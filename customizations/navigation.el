@@ -59,3 +59,42 @@
 
 ;; projectile everywhere!
 (projectile-global-mode)
+
+;;
+;; smooth scrolling
+;;
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed 'f) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse t) ;; scroll window under mouse
+
+(setq redisplay-dont-pause 'f
+  scroll-margin 1
+  scroll-step 1
+  scroll-conservatively 1000
+  scroll-preserve-screen-position 1)
+
+;;
+;; ido configuration
+;;
+(require 'ido)
+;; (require 'ido-hacks)
+(require 'flx-ido)
+(require 'ido-vertical-mode)
+
+(ido-mode 1)
+(flx-ido-mode 1)
+;; (ido-hacks-mode 1)
+(ido-everywhere 1)
+(ido-vertical-mode 1)
+
+(setq ido-enable-flex-matching t
+      ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+
+;;
+;; ace-jump
+;;
+(define-key global-map (kbd "C-c SPC") 'ace-jump-word-mode)
+(define-key global-map (kbd "C-c C-c SPC") 'ace-jump-char-mode)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)

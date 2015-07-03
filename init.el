@@ -53,6 +53,9 @@
     ;; customizations/navigation.el line 23 for a description
     ;; of ido
     ido-ubiquitous
+    ido-hacks
+    flx-ido
+    ido-vertical-mode
 
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
@@ -69,7 +72,13 @@
     tagedit
 
     ;; git integration
-    magit))
+    magit
+
+    ;; fast navigation
+    ace-jump-mode
+
+    ;; themes
+    leuven-theme))
 
 ;; On OS X, an Emacs instance started from the graphical user
 ;; interface will have a different environment than a shell in a
@@ -133,3 +142,4 @@
 ;; Langauage-specific
 (load "setup-clojure.el")
 (load "setup-js.el")
+
