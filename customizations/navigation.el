@@ -98,3 +98,24 @@
 (eval-after-load "ace-jump-mode"
   '(ace-jump-mode-enable-mark-sync))
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+;;
+;; window-number && window-numbering
+;;
+(require 'window-number)
+(window-number-mode 1)
+(define-key global-map (kbd "<C-tab>") 'window-number-switch)
+
+(require 'window-numbering)
+(window-numbering-mode 1)
+(dotimes (i 10)
+  (define-key global-map (kbd (format "s-%s" i)) (intern (format "select-window-%s" i))))
+
+(dotimes (i 10)
+  (eval `(defun ,(intern (format "delete-window-%s" i)) (&optional args)
+           ,(format "Delete the window with number %i." i)
+           (interactive "P")
+           (select-window-by-number ,i 1))))
+
+(dotimes (i 10)
+  (define-key global-map (kbd (format "C-s-%s" i)) (intern (format "delete-window-%s" i))))

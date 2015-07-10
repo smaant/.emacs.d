@@ -76,6 +76,8 @@
 
     ;; fast navigation
     ace-jump-mode
+    window-number
+    window-numbering
 
     ;; themes
     leuven-theme))
@@ -142,4 +144,3 @@
 ;; Langauage-specific
 (load "setup-clojure.el")
 (load "setup-js.el")
-
