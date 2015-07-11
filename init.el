@@ -73,6 +73,7 @@
 
     ;; git integration
     magit
+    diff-hl
 
     ;; fast navigation
     ace-jump-mode

@@ -67,3 +67,12 @@
     (quit nil)))
 
 (setq electric-indent-mode nil)
+
+(defun save-all-files ()
+  (interactive)
+  (save-some-buffers t))
+
+(diff-hl-mode 1)
+
+(add-hook 'focus-out-hook 'save-all-files)
+
