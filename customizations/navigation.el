@@ -134,3 +134,48 @@
 (dotimes (i 10)
   (define-key global-map (kbd (format "C-s-%s" i)) (intern (format "delete-window-%s" i))))
 
+;;
+;; windows resizing
+;;
+(require 'windmove)
+
+(defun resize-window (first? resize-first second? resize-second)
+  (interactive)
+  (if (funcall first?) 
+      (funcall resize-first 1)
+    (if (funcall second?)
+        (funcall resize-second 1)
+      nil)))
+
+(defun top? ()
+  (let ((window (windmove-find-other-window 'down)))
+    (and window (not (equal window (minibuffer-window))))))
+
+(defun bottom? ()
+  (windmove-find-other-window 'down))
+
+(defun left? ()
+  (windmove-find-other-window 'right))
+
+(defun right? ()
+  (windmove-find-other-window 'left))
+
+(define-key global-map (kbd "<S-s-down>")
+  (lambda ()
+    (interactive)
+    (resize-window 'top? 'enlarge-window 'bottom? 'shrink-window)))
+
+(define-key global-map (kbd "<S-s-up>")
+  (lambda ()
+    (interactive)
+    (resize-window 'top? 'shrink-window 'bottom? 'enlarge-window)))
+
+(define-key global-map (kbd "<S-s-left>")
+  (lambda ()
+    (interactive)
+    (resize-window 'left? 'shrink-window-horizontally 'right? 'enlarge-window-horizontally)))
+
+(define-key global-map (kbd "<S-s-right>")
+  (lambda ()
+    (interactive)
+    (resize-window 'left? 'enlarge-window-horizontally 'right? 'shrink-window-horizontally)))
