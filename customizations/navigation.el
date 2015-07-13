@@ -58,7 +58,16 @@
 (global-set-key (kbd "M-x") 'smex)
 
 ;; projectile everywhere!
+(require 'projectile)
 (projectile-global-mode)
+
+(defun find-file-in-projecttile-or-ido ()
+  (interactive)
+  (if (projectile-project-p)
+      (projectile-find-file)
+    (ido-find-file)))
+
+(define-key global-map (kbd "C-x C-f") 'find-file-in-projecttile-or-ido)
 
 ;;
 ;; smooth scrolling
@@ -179,3 +188,4 @@
   (lambda ()
     (interactive)
     (resize-window 'left? 'enlarge-window-horizontally 'right? 'shrink-window-horizontally)))
+
