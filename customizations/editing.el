@@ -4,6 +4,8 @@
 ;; http://www.emacswiki.org/emacs/HippieExpand
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+(setenv "DICTIONARY" "en_US")
+
 ;; Lisp-friendly hippie expand
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev
@@ -17,6 +19,13 @@
 
 ;; Highlight current line
 (global-hl-line-mode 1)
+
+(require 'highlight-symbol)
+(global-set-key (kbd "<s-f3>") 'highlight-symbol)
+(global-set-key (kbd "<f3>") 'highlight-symbol-next)
+(global-set-key (kbd "<S-f3>") 'highlight-symbol-prev)
+(global-set-key (kbd "<s-S-f3>") 'highlight-symbol-remove-all)
+(global-set-key (kbd "<C-f3>") 'highlight-symbol-query-replace)
 
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.
@@ -72,7 +81,23 @@
   (interactive)
   (save-some-buffers t))
 
-(diff-hl-mode 1)
+;; Highlight changes
+(global-diff-hl-mode)
+(diff-hl-flydiff-mode)
 
 (add-hook 'focus-out-hook 'save-all-files)
 
+(delete-selection-mode 1)
+
+(defun my-backward-kill-word ()
+  "Kill words backward with respect to the line break (stops at the end of the last word of prev line)"
+  (interactive)
+  (if (bolp)
+      (backward-delete-char 1)
+    (if (string-match "^\\s-+$" (buffer-substring (point-at-bol) (point)))
+        (progn
+          (kill-region (point-at-bol) (point))
+          (backward-delete-char 1))
+      (backward-kill-word 1))))
+
+(global-set-key (kbd "<M-backspace>") 'my-backward-kill-word)
