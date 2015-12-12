@@ -101,3 +101,6 @@
       (backward-kill-word 1))))
 
 (global-set-key (kbd "<M-backspace>") 'my-backward-kill-word)
+
+(require 'undo-tree)
+(global-undo-tree-mode)

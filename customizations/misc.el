@@ -13,3 +13,7 @@
 
 ;; rainbow mode for emacs-lisp
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+
+(require 'which-key)
+(which-key-mode)
+(which-key-setup-side-window-right)

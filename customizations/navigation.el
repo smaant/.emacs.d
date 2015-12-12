@@ -85,6 +85,24 @@
   scroll-preserve-screen-position 1)
 
 ;;
+;; Direx
+;;
+(require 'direx)
+(global-set-key (kbd "C-x M-j") 'direx:jump-to-directory)
+(global-set-key (kbd "C-x M-p") 'direx-project:jump-to-project-root)
+(define-key direx:direx-mode-map (kbd "<M-down>") 'direx:next-sibling-item)
+(define-key direx:direx-mode-map (kbd "<M-up>") 'direx:previous-sibling-item)
+(define-key direx:direx-mode-map (kbd "<SPC>") 'direx:view-item)
+
+;;
+;; Multiple cursors
+;;
+(require 'multiple-cursors)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "s->") 'mc/skip-to-next-like-this)
+;;
 ;; ido configuration
 ;;
 (require 'ido)

@@ -15,7 +15,22 @@
 ;; A little more syntax highlighting
 (require 'clojure-mode-extra-font-locking)
 
-(put-clojure-indent 'context 2)
+(put-clojure-indent 'attempt-all 1)
+(put-clojure-indent 'domonad 1)
+(put-clojure-indent 'testing* 1)
+
+(define-clojure-indent
+  (defroutes 'defun)
+  (GET 2)
+  (POST 2)
+  (PUT 2)
+  (DELETE 2)
+  (HEAD 2)
+  (ANY 2)
+  (context 2)
+  (require-auth 1)
+  (timed 1))
+
 
 ;; syntax hilighting for midje
 (add-hook 'clojure-mode-hook
