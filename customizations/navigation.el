@@ -1,4 +1,4 @@
-;; These customizations make it easier for you to navigate files,
+; These customizations make it easier for you to navigate files,
 ;; switch buffers, and choose options from the minibuffer.
 
 
@@ -9,15 +9,15 @@
 ;; The forward naming method includes part of the file's directory
 ;; name at the beginning of the buffer name
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
+;; (require 'uniquify)
+;; (setq uniquify-buffer-name-style 'forward)
 
 ;; Turn on recent file mode so that you can more easily switch to
 ;; recently edited files when you first start emacs
-(setq recentf-save-file (concat user-emacs-directory ".recentf"))
-(require 'recentf)
-(recentf-mode 1)
-(setq recentf-max-menu-items 40)
+;; (setq recentf-save-file (concat user-emacs-directory ".recentf"))
+;; (require 'recentf)
+;; (recentf-mode 1)
+;; (setq recentf-max-menu-items 40)
 
 
 ;; ido-mode allows you to more easily navigate choices. For example,
@@ -26,42 +26,42 @@
 ;; name, ido will narrow down the list of buffers to match the text
 ;; you've typed in
 ;; http://www.emacswiki.org/emacs/InteractivelyDoThings
-(ido-mode t)
+;(ido-mode t)
 
 ;; This allows partial matches, e.g. "tl" will match "Tyrion Lannister"
-(setq ido-enable-flex-matching t)
+;(setq ido-enable-flex-matching t)
 
 ;; Turn this behavior off because it's annoying
-(setq ido-use-filename-at-point nil)
+;(setq ido-use-filename-at-point nil)
 
 ;; Don't try to match file across all "work" directories; only match files
 ;; in the current directory displayed in the minibuffer
-(setq ido-auto-merge-work-directories-length -1)
+;(setq ido-auto-merge-work-directories-length -1)
 
 ;; Includes buffer names of recently open files, even if they're not
 ;; open now
-(setq ido-use-virtual-buffers t)
+;(setq ido-use-virtual-buffers t)
 
 ;; This enables ido in all contexts where it could be useful, not just
 ;; for selecting buffer and file names
-(ido-ubiquitous-mode 1)
+;(ido-ubiquitous-mode 1)
 
 ;; Shows a list of buffers
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+;(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Shows imenu
-(global-set-key (kbd "C-c m") 'imenu)
+;(global-set-key (kbd "C-c m") 'imenu)
 
 ;; Enhances M-x to allow easier execution of commands. Provides
 ;; a filterable list of possible commands in the minibuffer
 ;; http://www.emacswiki.org/emacs/Smex
-(setq smex-save-file (concat user-emacs-directory ".smex-items"))
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
+;(setq smex-save-file (concat user-emacs-directory ".smex-items"))
+;(smex-initialize)
+;(global-set-key (kbd "M-x") 'smex)
 
 ;; projectile everywhere!
-(require 'projectile)
-(projectile-global-mode)
+;(require 'projectile)
+;(projectile-global-mode)
 
 (defun find-file-in-projecttile-or-ido ()
   (interactive)
@@ -71,62 +71,63 @@
 
 (define-key global-map (kbd "C-x C-f") 'find-file-in-projecttile-or-ido)
 
-;;
-;; smooth scrolling
-;;
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq mouse-wheel-progressive-speed 'f) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse t) ;; scroll window under mouse
+;; ;;
+;; ;; smooth scrolling
+;; ;;
+;; (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+;; (setq mouse-wheel-progressive-speed 'f) ;; don't accelerate scrolling
+;; (setq mouse-wheel-follow-mouse t) ;; scroll window under mouse
 
-(setq redisplay-dont-pause 'f
-  scroll-margin 1
-  scroll-step 1
-  scroll-conservatively 1000
-  scroll-preserve-screen-position 1)
+;; (setq redisplay-dont-pause 'f
+;;   scroll-margin 1
+;;   scroll-step 1
+;;   scroll-conservatively 1000
+;;   scroll-preserve-screen-position 1)
 
 ;;
 ;; Direx
 ;;
-(require 'direx)
-(global-set-key (kbd "C-x M-j") 'direx:jump-to-directory)
-(global-set-key (kbd "C-x M-p") 'direx-project:jump-to-project-root)
-(define-key direx:direx-mode-map (kbd "<M-down>") 'direx:next-sibling-item)
-(define-key direx:direx-mode-map (kbd "<M-up>") 'direx:previous-sibling-item)
-(define-key direx:direx-mode-map (kbd "<SPC>") 'direx:view-item)
+;; (require 'direx)
+;; (global-set-key (kbd "C-x M-j") 'direx:jump-to-directory)
+;; (global-set-key (kbd "C-x M-p") 'direx-project:jump-to-project-root)
+;; (define-key direx:direx-mode-map (kbd "<M-down>") 'direx:next-sibling-item)
+;; (define-key direx:direx-mode-map (kbd "<M-up>") 'direx:previous-sibling-item)
+;; (define-key direx:direx-mode-map (kbd "<SPC>") 'direx:view-item)
 
 ;;
 ;; Multiple cursors
 ;;
-(require 'multiple-cursors)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key (kbd "s->") 'mc/skip-to-next-like-this)
+;; (require 'multiple-cursors)
+;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+;; (global-set-key (kbd "s->") 'mc/skip-to-next-like-this)
+
 ;;
 ;; ido configuration
 ;;
-(require 'ido)
+;(require 'ido)
 ;; (require 'ido-hacks)
-(require 'flx-ido)
-(require 'ido-vertical-mode)
+;(require 'flx-ido)
+;(require 'ido-vertical-mode)
 
-(ido-mode 1)
-(flx-ido-mode 1)
+;(ido-mode 1)
+;(flx-ido-mode 1)
 ;; (ido-hacks-mode 1)
-(ido-everywhere 1)
-(ido-vertical-mode 1)
+;(ido-everywhere 1)
+;(ido-vertical-mode 1)
 
-(setq ido-enable-flex-matching t
-      ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+;; (setq ido-enable-flex-matching t
+;;       ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
 
 ;;
 ;; ace-jump
 ;;
-(define-key global-map (kbd "C-c SPC") 'ace-jump-word-mode)
-(define-key global-map (kbd "C-c C-c SPC") 'ace-jump-char-mode)
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+;; (define-key global-map (kbd "C-c SPC") 'ace-jump-word-mode)
+;; (define-key global-map (kbd "C-c C-c SPC") 'ace-jump-char-mode)
+;; (eval-after-load "ace-jump-mode"
+;;   '(ace-jump-mode-enable-mark-sync))
+;; (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
 ;;
 ;; Cmd+Shift+Enter
@@ -145,9 +146,9 @@
 ;;
 ;; window-number && window-numbering
 ;;
-(require 'window-number)
-(window-number-mode 1)
-(define-key global-map (kbd "<C-tab>") 'window-number-switch)
+;; (require 'window-number)
+;; (window-number-mode 1)
+;; (define-key global-map (kbd "<C-tab>") 'window-number-switch)
 
 (require 'window-numbering)
 (window-numbering-mode 1)
