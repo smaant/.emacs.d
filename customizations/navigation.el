@@ -132,16 +132,16 @@
 ;;
 ;; Cmd+Shift+Enter
 ;;
-(defun newline-without-break-of-line ()
-  "1. move to end of the line.
-  2. insert newline with indent"
+;; (defun newline-without-break-of-line ()
+;;   "1. move to end of the line.
+;;   2. insert newline with indent"
 
-  (interactive)
-  (let ((oldpos (point)))
-    (end-of-line)
-    (newline-and-indent)))
+;;   (interactive)
+;;   (let ((oldpos (point)))
+;;     (end-of-line)
+;;     (newline-and-indent)))
 
-(global-set-key (kbd "<s-S-return>") 'newline-without-break-of-line)
+;; (global-set-key (kbd "<s-S-return>") 'newline-without-break-of-line)
 
 ;;
 ;; window-number && window-numbering
@@ -149,6 +149,13 @@
 ;; (require 'window-number)
 ;; (window-number-mode 1)
 ;; (define-key global-map (kbd "<C-tab>") 'window-number-switch)
+
+(defadvice switch-to-buffer (before save-buffer-now activate)
+  (when buffer-file-name (save-buffer)))
+(defadvice other-window (before other-window-now activate)
+  (when buffer-file-name (save-buffer)))
+(defadvice other-frame (before other-frame-now activate)
+  (when buffer-file-name (save-buffer)))
 
 (require 'window-numbering)
 (window-numbering-mode 1)

@@ -86,6 +86,7 @@
 (diff-hl-flydiff-mode)
 
 (add-hook 'focus-out-hook 'save-all-files)
+(add-hook 'focus-in-hook 'save-all-files)
 
 (delete-selection-mode 1)
 
@@ -98,9 +99,12 @@
         (progn
           (kill-region (point-at-bol) (point))
           (backward-delete-char 1))
-      (backward-kill-word 1))))
+      (if (bound-and-true-p paredit-mode)
+          (paredit-backward-kill-word)
+          (backward-kill-word 1)))))
 
-(global-set-key (kbd "<M-backspace>") 'my-backward-kill-word)
+;;(global-set-key (kbd "<M-backspace>") 'my-backward-kill-word)
 
-(require 'undo-tree)
-(global-undo-tree-mode)
+
+;; (require 'undo-tree)
+;; (global-undo-tree-mode)
